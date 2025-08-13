@@ -8,17 +8,16 @@ let page;
 // Browser Loader
 // ----------------------
 const BrowserLoad = async (req, res, next) => {
-  console.log("Browser load 1");
-  
   const browser = await puppeteer.launch({
     headless: 'new',
-    args: ['--no-sandbox', '--disable-setuid-sandbox']
+    args: ['--no-sandbox', '--disable-setuid-sandbox'],
+    executablePath: '/opt/render/.cache/puppeteer/chrome/linux-139.0.7258.66/chrome-linux64/chrome'
   });
   console.log("Browser load 2");
-  
+
   page = await browser.newPage();
-console.log("Browser load 3");
-  
+  console.log("Browser load 3");
+
   await page.goto('https://udyamregistration.gov.in/UdyamRegistration.aspx', {
     timeout: 100000,
     waitUntil: 'networkidle0',
