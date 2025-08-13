@@ -8,7 +8,9 @@ let page;
 // Browser Loader
 // ----------------------
 const BrowserLoad = async (req, res, next) => {
-  const browser = await puppeteer.launch({slowMo: 50 });
+  const browser = await puppeteer.launch({ headless: 'new',
+    args: ['--no-sandbox', '--disable-setuid-sandbox'],
+    executablePath: process.env.PUPPETEER_EXECUTABLE_PATH || (await puppeteer.executablePath()) ,slowMo: 50 });
   page = await browser.newPage();
 
   await page.goto('https://udyamregistration.gov.in/UdyamRegistration.aspx', {
