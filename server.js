@@ -1,11 +1,12 @@
 import express from "express";
 import cors from "cors";
 import udyamRoutes from "./routes/udyamRoutes.js"; // Adjust path as needed
-
+import dotenv from 'dotenv';
+dotenv.config();
 const app = express();
 
 app.use(cors({
-  origin: "http://localhost:3000"
+  origin: process.env.URL
 }));
 app.use(express.json());
 
