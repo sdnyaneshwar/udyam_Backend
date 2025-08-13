@@ -8,9 +8,13 @@ let page;
 // Browser Loader
 // ----------------------
 const BrowserLoad = async (req, res, next) => {
-  const browser = await puppeteer.launch({ headless: 'new',
+  const browser = await puppeteer.launch({
+    headless: 'new',
+    slowMo: 50,
     args: ['--no-sandbox', '--disable-setuid-sandbox'],
-    executablePath: process.env.PUPPETEER_EXECUTABLE_PATH || (await puppeteer.executablePath()) ,slowMo: 50 });
+    executablePath: process.env.PUPPETEER_EXECUTABLE_PATH || puppeteer.executablePath()
+  });
+
   page = await browser.newPage();
 
   await page.goto('https://udyamregistration.gov.in/UdyamRegistration.aspx', {
@@ -18,9 +22,10 @@ const BrowserLoad = async (req, res, next) => {
     waitUntil: 'networkidle0',
   });
 
-  console.log("Full page load");
+  console.log('Full page load');
   next();
 };
+
 
 // ----------------------
 // Aadhaar Verification
