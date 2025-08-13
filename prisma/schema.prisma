@@ -1,0 +1,26 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+model AadhaarVerification {
+  id        Int      @id @default(autoincrement())
+  aadhaar   String
+  name      String
+  otpSent   Boolean  @default(false)
+  otpVerified Boolean @default(false)
+  createdAt DateTime @default(now())
+}
+
+model PanVerification {
+  id          Int      @id @default(autoincrement())
+  organisation String
+  pan         String
+  name        String
+  dob         String
+  message     String
+  createdAt   DateTime @default(now())
+}
