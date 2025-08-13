@@ -9,11 +9,11 @@ let page;
 // ----------------------
 const BrowserLoad = async (req, res, next) => {
   const browser = await puppeteer.launch({
-    headless: 'new',
-    slowMo: 50,
-    args: ['--no-sandbox', '--disable-setuid-sandbox'],
-    executablePath: process.env.PUPPETEER_EXECUTABLE_PATH || puppeteer.executablePath()
-  });
+  headless: 'new',
+  slowMo: 50,
+  args: ['--no-sandbox', '--disable-setuid-sandbox'],
+  executablePath: puppeteer.executablePath()
+});
 
   page = await browser.newPage();
 
