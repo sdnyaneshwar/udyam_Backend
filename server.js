@@ -1,7 +1,8 @@
 import express from "express";
 import cors from "cors";
-import udyamRoutes from "./routes/udyamRoutes.js"; // Adjust path as needed
+import udyamRoutes from "./routes/udyamRoutes.js";
 import dotenv from 'dotenv';
+
 dotenv.config();
 const app = express();
 
@@ -16,6 +17,8 @@ app.use(cors({
 
 app.use(express.json());
 
+// Handle preflight requests
+app.options('*', cors()); 
 // Routes
 app.use("/udyam", udyamRoutes);
 
